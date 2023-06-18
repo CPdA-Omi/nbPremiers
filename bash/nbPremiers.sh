@@ -5,14 +5,16 @@ cpt=0
 cptLine=0
 min=$1
 max=$2
+nbPerLine=10
 
 if [ $# -ne 1 -a $# -ne 2 ]; then # $#>2 or $#<1
 	echo "Erreur, fournir UN ou DEUX arguments." >&2
 	exit 1
 
-elif [ $# -eq 1 ]; then #only one number
+elif [ $# -eq 1 ]; then # only one number
 	if [ $min -eq 1 -o $min -eq 2 -o $min -eq 3 ]; then
 		echo "$min est un nombre premier"
+		exit 0
 	else
 		if [ $(($min%2)) -ne 0 ]; then
 			premier=true
@@ -41,7 +43,9 @@ if [ $min -eq 1 -a $max -gt 2 ]; then
 	min=$(($min+1))
 fi
 
-for i in $(seq $min 1 $max); do
+echo -e "Nombres premiers entre $min et $max\n"
+
+for i in $(seq $min 1 $max); do # multiple valid numbers
 	if [ $i -eq 2 -o $i -eq 3 -o $i -eq 5 ]; then
 		echo -ne "\t$i"
 		cpt=$(($cpt+1))
@@ -50,7 +54,7 @@ for i in $(seq $min 1 $max); do
 	else
 		if [ $(($i%2)) -ne 0 -a $(($i%5)) -ne 0 ]; then # $i is not pair or not multiple of 5
 			premier=true
-			if [ $cptLine -gt 9 ]; then
+			if [ $cptLine -gt $(($nbPerLine-1)) ]; then
 				echo ""
 				cptLine=0
 			fi
