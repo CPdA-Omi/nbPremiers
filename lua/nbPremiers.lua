@@ -42,6 +42,7 @@ if min > max then -- inversion
 	alt=min
 	min=max
 	max=alt
+	print("Numbers swapped!")
 end
 
 --if min == 1 and max > 2 then
