@@ -49,7 +49,7 @@ end
 --	min=min+1
 --end
 
-print("Prime numbers between ", min, "and", max)
+print("Prime numbers between ", min, "and", max, "\n")
 
 for i=min, max, 1 do -- multiple valid numbers (flush on all numbers between min and max)
 	if i==1 or i == 2 or i == 3 or i == 5 then
